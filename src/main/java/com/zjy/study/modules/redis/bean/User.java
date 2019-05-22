@@ -1,6 +1,10 @@
 package com.zjy.study.modules.redis.bean;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
+
+    private static final long serialVersionUID = -2364854394090122031L;
 
     private String id;
     private String name;

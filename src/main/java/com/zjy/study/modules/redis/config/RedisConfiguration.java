@@ -1,7 +1,8 @@
 package com.zjy.study.modules.redis.config;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.parser.ParserConfig;
-import com.alibaba.fastjson.support.spring.FastJsonRedisSerializer;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.cache.CacheManagerCustomizer;
@@ -18,8 +19,10 @@ import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.RedisSerializationContext;
 import org.springframework.data.redis.serializer.RedisSerializer;
+import org.springframework.data.redis.serializer.SerializationException;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
+import java.nio.charset.Charset;
 import java.time.Duration;
 
 
@@ -40,9 +43,10 @@ public class RedisConfiguration extends CachingConfigurerSupport {
 
     @Bean
     public RedisSerializer fastJson2JsonRedisSerializer() {
-        ParserConfig.getGlobalInstance().addAccept("com.study.redis");
+        //如果遇到反序列化autoType is not support错误，请添加并修改一下包名到bean文件路径
+        ParserConfig.getGlobalInstance().addAccept("com.zjy.study.modules.redis");
         //return new FastJson2JsonRedisSerializer<>(Object.class);
-        return new FastJsonRedisSerializer(Object.class);
+        return new FastJson2JsonRedisSerializer(Object.class);
     }
 
     @Bean
@@ -87,10 +91,13 @@ public class RedisConfiguration extends CachingConfigurerSupport {
         RedisSerializer stringSerializer = new StringRedisSerializer();
         redisTemplate.setConnectionFactory(redisConnectionFactory);
         redisTemplate.setKeySerializer(stringSerializer);
+        redisTemplate.setHashKeySerializer(stringSerializer);
+        redisTemplate.setHashValueSerializer(fastJson2JsonRedisSerializer);
         redisTemplate.setValueSerializer(fastJson2JsonRedisSerializer);
         redisTemplate.afterPropertiesSet();
         return redisTemplate;
     }
 
 }
+
 

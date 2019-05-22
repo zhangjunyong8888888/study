@@ -1,0 +1,9 @@
+spring:
+  data:
+    elasticsearch:
+      cluster-name: docker-cluster
+      cluster-nodes: 192.144.204.158:9301
+  redis:
+    host: 192.144.204.158
+    port: 6379
+    password: 123456

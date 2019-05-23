@@ -24,15 +24,24 @@ public class RedisTest extends StudyApplicationTests {
         System.out.println(valueOperations.get("user-1"));
         valueOperations.getOperations().delete("user-1");
         System.out.println(valueOperations.get("user-1"));
-        // 第三个参数是 offset，偏移量       kkkkkkkkkkkk
-        valueOperations.set("key-1", "kkkkkkkkkkkk", 6);
-        System.out.println(valueOperations.get("key-1"));
+
+        // 设置过期时间
+        valueOperations.set("name","tom",10, TimeUnit.SECONDS);
+
+        //该方法是用 value 参数覆写(overwrite)给定 key 所储存的字符串值，从偏移量 offset 开始
+        valueOperations.set("key","hello world");
+        valueOperations.set("key","redis", 6);
+        System.out.println(valueOperations.get("key")); //hello redis
+
+        //设置键的字符串值并返回其旧值
+        valueOperations.getAndSet("key","new Value");
 
         // 该方法的特点是如果redis中已有该数据,不保存返回false,不存在该数据，保存返回true
         Boolean isOk1 = valueOperations.setIfAbsent("key-2","22");
         System.out.println(isOk1);
         Boolean isOk2 = valueOperations.setIfAbsent("key-2","22");
         System.out.println(isOk2);
+
 
         // 批量 set get
         Map<String,String> valueMap = new HashMap<>(3);
@@ -174,12 +183,62 @@ public class RedisTest extends StudyApplicationTests {
         setOperations.add("set","1","2","4");
         setOperations.add("set1","1","2");
         System.out.println(setOperations.intersect("set","set1"));
-        setOperations.add("set2","1","2","4","5");
+        setOperations.add("set2","1","2","4");
         // 所有set 共同的交集
         System.out.println(setOperations.intersect("set",Arrays.asList("set1","set2")));
         // 求 并集
         System.out.println(setOperations.union("set",Arrays.asList("set1","set2")));
+        // 将 set1 和 set2 的并集存储到 set3 中， set3原先有值会被清空
+        setOperations.unionAndStore("set1", Arrays.asList("set2","set"), "set3");
 
+        // 求 set3 与 set 1 的差集 相当于 set3-set1 , 若第二个key不存在，返回key1的所有值
+        System.out.println(setOperations.difference("set3","set1"));
+        setOperations.differenceAndStore("set3", "set1", "set5");
 
+        // 返回集合中的所有成员
+        System.out.println(setOperations.members("set"));
+        // 随机获取 key 无序集合中的一个元素
+        System.out.println(setOperations.randomMember("set"));
+
+        // 获取多个 key 无序集合中的元素（去重），count 表示个数，返回Set
+        System.out.println(setOperations.distinctRandomMembers("set", 1));
+
+        // 获取多个 key 无序集合中的元素，count 表示个数，返回List
+        List<Object> randomMembers = setOperations.randomMembers("set", 2);
+        System.out.println(randomMembers);
+    }
+
+    @Test
+    public void testZset(){
+        ZSetOperations<String,Object> zSetOperations= redisTemplate.opsForZSet();
+        zSetOperations.add("zset","zhangsan",1.00);
+        zSetOperations.add("zset","lisi",2.00);
+        zSetOperations.add("zset","wangwu",0.50);
+        // 获取所有（从小到大）
+        System.out.println(zSetOperations.range("zset", 0, -1));
+        // 获取所有（从大到小）
+        System.out.println(zSetOperations.reverseRange("zset",0,-1));
+
+        // 返回指定成员排名，分值从小到大排名，排名从0开始
+        System.out.println(zSetOperations.rank("zset","lisi"));
+        // 返回指定成员排名，分值从大到小排名，排名从0开始
+        System.out.println(zSetOperations.reverseRank("zset","lisi"));
+        // 通过分数返回有序集合指定区间内的成员，其中有序集成员按分数值递增(从小到大)顺序排列
+        System.out.println(zSetOperations.rangeByScore("zset",0,5));
+
+        //移除指定索引位置的成员，其中有序集成员按分数值递增(从小到大)顺序排列
+        System.out.println(zSetOperations.removeRange("zset",1,2));
+        //根据指定的score值得范围来移除成员
+        System.out.println(zSetOperations.removeRangeByScore("zset",2,3));
+
+        //计算给定的一个有序集的并集，并存储在新的 destKey中，key相同的话会把score值相加
+        System.out.println(zSetOperations.unionAndStore("zset1","zset2","newZset"));
+        //计算给定的一个或多个有序集的交集并将结果集存储在新的有序集合 key 中
+        System.out.println(zSetOperations.intersectAndStore("zset1","zset2","newZset"));
+
+        // 从有序集合中移除一个或者多个元素
+        zSetOperations.remove("zset", Arrays.asList("zhangsan"));
+        // 增加元素的 score 值，并返回增加后的值
+        zSetOperations.incrementScore("zset", "lisi", 1.0);
     }
 }

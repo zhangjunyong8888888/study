@@ -1,7 +1,7 @@
-package com.zjy.study.modules.handler.common;
+package com.zjy.study.modules.skills.springboot.handler.common;
 
-import com.zjy.study.modules.handler.annotation.HandlerType;
-import com.zjy.study.modules.handler.utils.ClassScanner;
+import com.zjy.study.modules.skills.springboot.handler.annotation.HandlerType;
+import com.zjy.study.modules.skills.springboot.handler.utils.ClassScanner;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;

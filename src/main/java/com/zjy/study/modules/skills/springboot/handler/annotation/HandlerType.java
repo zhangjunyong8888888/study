@@ -1,4 +1,4 @@
-package com.zjy.study.modules.handler.annotation;
+package com.zjy.study.modules.skills.springboot.handler.annotation;
 
 import java.lang.annotation.*;
 

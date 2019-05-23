@@ -1,4 +1,4 @@
-package com.zjy.study.modules.handler.utils;
+package com.zjy.study.modules.skills.springboot.handler.utils;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;

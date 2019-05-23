@@ -1,4 +1,4 @@
-package com.zjy.study.modules.handler.enums;
+package com.zjy.study.modules.skills.springboot.handler.enums;
 
 public enum  OrderTypeEnum {
 

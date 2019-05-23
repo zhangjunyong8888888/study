@@ -1,6 +1,6 @@
-package com.zjy.study.modules.handler.service;
+package com.zjy.study.modules.skills.springboot.handler.service;
 
-import com.zjy.study.modules.handler.bean.OrderDTO;
+import com.zjy.study.modules.skills.springboot.handler.bean.OrderDTO;
 
 public interface IOrderService {
 

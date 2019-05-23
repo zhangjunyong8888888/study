@@ -1,4 +1,4 @@
-package com.zjy.study.modules.handler.bean;
+package com.zjy.study.modules.skills.springboot.handler.bean;
 
 import java.math.BigDecimal;
 

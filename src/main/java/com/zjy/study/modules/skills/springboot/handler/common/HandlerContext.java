@@ -1,6 +1,6 @@
-package com.zjy.study.modules.handler.common;
+package com.zjy.study.modules.skills.springboot.handler.common;
 
-import com.zjy.study.modules.handler.utils.BeanUtil;
+import com.zjy.study.modules.skills.springboot.handler.utils.BeanUtil;
 
 import java.util.Map;
 

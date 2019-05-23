@@ -1,8 +1,8 @@
 package com.zjy.study.tests;
 
 import com.zjy.study.StudyApplicationTests;
-import com.zjy.study.modules.handler.bean.OrderDTO;
-import com.zjy.study.modules.handler.service.IOrderService;
+import com.zjy.study.modules.skills.springboot.handler.bean.OrderDTO;
+import com.zjy.study.modules.skills.springboot.handler.service.IOrderService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

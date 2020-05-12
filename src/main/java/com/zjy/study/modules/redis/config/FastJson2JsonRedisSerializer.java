@@ -14,7 +14,7 @@ import java.nio.charset.StandardCharsets;
 /**
  * FastJson2JsonRedisSerializer
  *  Redis使用FastJson序列化
- *  by zhengkai.blog.csdn.net
+· *  by
  */
 public class FastJson2JsonRedisSerializer<T> implements RedisSerializer<T> {
     private ObjectMapper objectMapper = new ObjectMapper();

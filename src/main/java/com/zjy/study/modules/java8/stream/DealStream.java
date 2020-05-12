@@ -2,6 +2,7 @@ package com.zjy.study.modules.java8.stream;
 
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Random;
 import java.util.concurrent.ForkJoinPool;
@@ -18,7 +19,7 @@ public class DealStream {
         String msg = "my name is bob";
 
         // 获取到每个单词长度
-        Stream.of(msg.split(" ")).filter(s-> s.length()>2).map(s->s.length()).forEach(System.out::println);
+        Stream.of(msg.split(" ")).filter(s-> s.length()>2).map(String::length).forEach(System.out::println);
 
         //flatMap A->B属性（是个集合），最终得到所有A元素里面的所有B属性的集合
         // intStream/longStream 并不是Stream的子类，所以需要进行装箱 boxed()
@@ -40,6 +41,7 @@ public class DealStream {
 
         List<String> list = Stream.of(msg.split(" ")).collect(Collectors.toList());
 
+        Map<Boolean, List<String>> collect = list.stream().collect(Collectors.partitioningBy(s -> s.equals("")));
         // reduce 拼接字符串
         Optional<String> reduce = Stream.of(msg.split(" ")).reduce((s1, s2) -> {
             System.out.println(String.format("%s:%s", s1, s2));

@@ -1,4 +1,4 @@
-package com.zjy.study.modules.springboot.threadpool.config;
+package com.zjy.study.modules.threadpool.springboot.config;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

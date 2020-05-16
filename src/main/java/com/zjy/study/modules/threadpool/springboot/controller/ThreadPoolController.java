@@ -1,6 +1,6 @@
-package com.zjy.study.modules.springboot.threadpool.controller;
+package com.zjy.study.modules.threadpool.springboot.controller;
 
-import com.zjy.study.modules.springboot.threadpool.service.AsyncService;
+import com.zjy.study.modules.threadpool.springboot.service.AsyncService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

@@ -1,5 +1,6 @@
 package com.zjy.study.modules.threadpool.basic;
 
+import com.zjy.study.modules.utils.ThreadUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
@@ -46,6 +47,7 @@ public class CanBlockingQueue {
     public void synchronizedQueue() {
         SynchronousQueue<Integer> synchronousQueue = new SynchronousQueue<>();
         ExecutorService executorService = Executors.newFixedThreadPool(2);
+
         executorService.execute(() -> {
             try {
                 synchronousQueue.put(1);
@@ -56,24 +58,32 @@ public class CanBlockingQueue {
         });
 
         executorService.execute(() -> {
-            sleep(5);
+            ThreadUtil.sleep(5);
             Integer poll = synchronousQueue.poll();
             log.info("移交队列取出成功...-{}",poll);
         });
 
-        sleep(20);
+        ThreadUtil.sleep(20);
     }
 
     /**
-     * 线程休眠 n 秒
-     * @param seconds 休眠的秒数
+     * 线程池
      */
-    public static void sleep(int seconds){
-        try {
-            TimeUnit.SECONDS.sleep(seconds);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    private static ThreadPoolExecutor executor =
+            new ThreadPoolExecutor(
+                    // 核心线程数和最大线程数
+                    2, 3,
+                    // 线程空闲后的存活时间
+                    60L, TimeUnit.SECONDS,
+                    // 有界阻塞队列
+                    new LinkedBlockingQueue<Runnable>(5));
+
+    public static void main(String[] args) {
+        // 设置饱和策略为 终止策略
+        executor.setRejectedExecutionHandler(
+                new ThreadPoolExecutor.AbortPolicy());
     }
+
+
 
 }

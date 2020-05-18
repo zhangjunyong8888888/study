@@ -131,8 +131,8 @@ public class ReduceAndCollectTest {
             准备数据
          */
         ArrayList<Order> list = Lists.newArrayList();
-        list.add(new Order(1, "zhangxiaoxi", 2, 25.12));
-        list.add(new Order(2, "zhangxiaoxi",5, 257.23));
+        list.add(new Order(1, "zhangjunyong", 2, 25.12));
+        list.add(new Order(2, "zhangjunyong",5, 257.23));
         list.add(new Order(3, "lisi",3, 23332.12));
 
         /*

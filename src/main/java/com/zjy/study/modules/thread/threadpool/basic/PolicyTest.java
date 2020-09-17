@@ -1,4 +1,4 @@
-package com.zjy.study.modules.threadpool.basic;
+package com.zjy.study.modules.thread.threadpool.basic;
 
 
 import org.junit.After;

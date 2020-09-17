@@ -1,6 +1,6 @@
-package com.zjy.study.modules.threadpool.springboot.service.impl;
+package com.zjy.study.modules.thread.threadpool.springboot.service.impl;
 
-import com.zjy.study.modules.threadpool.springboot.service.AsyncService;
+import com.zjy.study.modules.thread.threadpool.springboot.service.AsyncService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Async;

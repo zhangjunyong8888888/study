@@ -1,4 +1,4 @@
-package com.zjy.study.modules.threadpool.basic;
+package com.zjy.study.modules.thread.threadpool.basic;
 
 import com.zjy.study.modules.utils.ThreadUtil;
 import lombok.extern.slf4j.Slf4j;

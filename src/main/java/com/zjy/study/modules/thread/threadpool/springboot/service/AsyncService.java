@@ -1,4 +1,4 @@
-package com.zjy.study.modules.threadpool.springboot.service;
+package com.zjy.study.modules.thread.threadpool.springboot.service;
 
 public interface AsyncService {
 

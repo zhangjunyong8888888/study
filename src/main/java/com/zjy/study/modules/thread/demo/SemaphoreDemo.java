@@ -13,7 +13,7 @@ public class SemaphoreDemo {
     /**
      * 同时允许 1 个线程允许
      */
-    private static final Semaphore SEMAPHORE = new Semaphore(2);
+    private static final Semaphore SEMAPHORE = new Semaphore(1);
 
       public static void main(String[] args) {
 

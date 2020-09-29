@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class TestDto implements Cloneable{
 
-    private String paramA;
+    private  String paramA;
     private String paramB;
 
     @Override

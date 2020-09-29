@@ -1,4 +1,4 @@
-package com.zjy.study.modules.thread.demo;
+package com.zjy.study.modules.thread.demo.exchanger;
 
 import java.util.concurrent.Exchanger;
 import java.util.concurrent.TimeUnit;
